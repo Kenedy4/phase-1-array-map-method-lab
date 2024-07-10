@@ -10,16 +10,23 @@ const tutorials = [
   "what is the difference between event capturing and bubbling?",
   "what is JSONP?",
 ];
+
 function toTitleCase(str) {
-  if (!str) {
-    return "";
-  }
+  const specialCases = {
+    oo: "OO",
+    api: "API",
+    nan: "NaN",
+    stoppropagation: "stopPropagation",
+    preventdefault: "preventDefault",
+    jsonp: "JSONP",
+  };
 
   return str
     .split(" ")
     .map(function (word) {
-      if (word.toUpperCase() === word) {
-        return word; // Keep the original case if the word is all uppercase
+      const lowerCaseWord = word.toLowerCase();
+      if (specialCases[lowerCaseWord]) {
+        return specialCases[lowerCaseWord];
       }
       return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
     })
@@ -29,3 +36,5 @@ function toTitleCase(str) {
 const titleCased = () => {
   return tutorials.map(toTitleCase);
 };
+
+console.log(titleCased());
