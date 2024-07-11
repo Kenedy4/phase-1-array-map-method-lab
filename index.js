@@ -11,30 +11,18 @@ const tutorials = [
   "what is JSONP?",
 ];
 
-function toTitleCase(str) {
-  const specialCases = {
-    oo: "OO",
-    api: "API",
-    nan: "NaN",
-    stoppropagation: "stopPropagation",
-    preventdefault: "preventDefault",
-    jsonp: "JSONP",
-  };
-
-  return str
-    .split(" ")
-    .map(function (word) {
-      const lowerCaseWord = word.toLowerCase();
-      if (specialCases[lowerCaseWord]) {
-        return specialCases[lowerCaseWord];
-      }
-      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-    })
-    .join(" ");
-}
-
 const titleCased = () => {
-  return tutorials.map(toTitleCase);
+  return tutorials.map((tutorial) => {
+    // Split each tutorial title into an array of words
+    return tutorial
+      .split(" ")
+      .map((word) => {
+        //Capitalize the first letter for each word and contactnates with the rest of the string
+        return word.charAt(0).toUpperCase() + word.slice(1);
+        // Join the array of with the first words uppercased to a single string.
+      })
+      .join(" ");
+  });
 };
-
+// call the function to test it
 console.log(titleCased());
